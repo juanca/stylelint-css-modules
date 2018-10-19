@@ -10,5 +10,7 @@
   "license": "MIT",
   "dependencies": {},
   "devDependencies": {},
-  "peerDependencies": {}
+  "peerDependencies": {
+    "stylelint": "^9.0.0"
+  }
 }
