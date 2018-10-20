@@ -55,7 +55,7 @@ module.exports = stylelint.createPlugin('css-modules/test', (primaryOption, seco
 
         classNames
           .filter(className => !className.includes('#'))
-          .filter(className => !fileContents.includes(`.${className}`))
+          .filter(className => !RegExp(`\\.${className}\\s*[,:{]`).test(fileContents))
           .forEach(className => stylelint.utils.report({
             index: decl.lastEach,
             message: messages.expected(className, fromFilePath),
