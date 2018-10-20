@@ -2,6 +2,10 @@ const fs = require('fs');
 const path = require('path');
 const stylelint = require('stylelint');
 
+const messages = stylelint.utils.ruleMessages('css-modules/test', {
+  expected: (className, filePath) => `Unable to find ${className} in ${filePath}`,
+})
+
 module.exports = stylelint.createPlugin('css-modules/test', (primaryOption, secondaryOptionObject) => {
   const options = secondaryOptionObject || { resolve: undefined };
   const resolve = options.resolve || { alias: {}, modules: [] };
@@ -54,9 +58,7 @@ module.exports = stylelint.createPlugin('css-modules/test', (primaryOption, seco
           .filter(className => !fileContents.includes(`.${className}`))
           .forEach(className => stylelint.utils.report({
             index: decl.lastEach,
-            message: stylelint.utils.ruleMessages('css-modules/test', {
-              expected: selector => `Unable to find ${className} in ${fromFilePath}`,
-            }),
+            message: messages.expected(className, fromFilePath),
             node: decl,
             result: result,
             ruleName: 'css-modules/test',
