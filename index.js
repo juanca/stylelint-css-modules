@@ -38,8 +38,9 @@ module.exports = stylelint.createPlugin('css-modules/test', (primaryOption, seco
 
     root.walkDecls((decl) => {
       if (decl.prop === 'composes') {
-        const classNames = decl.value.split('from')[0].replace(/\s+/g, ' ').trim().split(' ');
-        const fromExpression = decl.value.split('from')[1].trim();
+        const expressions = decl.value.split('from');
+        const classNames = expressions[0].replace(/\s+/g, ' ').trim().split(' ');
+        const fromExpression = expressions[1] ? expressions[1].trim() : `'${result.opts.from}'`;
 
         if (fromExpression === 'global') {
           return;
