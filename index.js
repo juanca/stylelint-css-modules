@@ -49,6 +49,7 @@ module.exports = stylelint.createPlugin('css-modules/test', (primaryOption, seco
         const fileContents = fs.readFileSync(fromFilePath, 'utf-8');
 
         classNames
+          .filter(className => !className.includes('#'))
           .filter(className => !fileContents.includes(`.${className}`))
           .forEach(className => stylelint.utils.report({
             index: decl.lastEach,
