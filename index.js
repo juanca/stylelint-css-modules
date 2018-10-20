@@ -54,7 +54,7 @@ module.exports = stylelint.createPlugin('css-modules/test', (primaryOption, seco
           .filter(className => !fileContents.includes(`.${className}`))
           .forEach(className => stylelint.utils.report({
             index: decl.lastEach,
-            message: utils.ruleMessages('css-modules/test', {
+            message: stylelint.utils.ruleMessages('css-modules/test', {
               expected: selector => `Unable to find ${className} in ${fromFilePath}`,
             }),
             node: decl,
