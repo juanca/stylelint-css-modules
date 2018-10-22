@@ -2,11 +2,11 @@ const fs = require('fs');
 const path = require('path');
 const stylelint = require('stylelint');
 
-const messages = stylelint.utils.ruleMessages('css-modules/compose-class-names', {
+const messages = stylelint.utils.ruleMessages('css-modules/composed-class-names', {
   expected: (className, filePath) => `Unable to find composed "${className}" class in ${filePath}`,
 })
 
-module.exports = stylelint.createPlugin('css-modules/compose-class-names', (primaryOption, secondaryOptionObject) => {
+module.exports = stylelint.createPlugin('css-modules/composed-class-names', (primaryOption, secondaryOptionObject) => {
   const options = secondaryOptionObject || { resolve: undefined };
   const resolve = options.resolve || { alias: {}, modules: [] };
   const aliasMap = resolve.alias || {};
@@ -61,11 +61,11 @@ module.exports = stylelint.createPlugin('css-modules/compose-class-names', (prim
             message: messages.expected(className, fromFilePath),
             node: decl,
             result: result,
-            ruleName: 'css-modules/compose-class-names',
+            ruleName: 'css-modules/composed-class-names',
           }));
       }
     });
   };
 });
 
-module.exports.ruleName = 'css-modules/compose-class-names';
+module.exports.ruleName = 'css-modules/composed-class-names';
