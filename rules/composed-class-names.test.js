@@ -15,3 +15,18 @@ test('composed-class-names rule parses correct compose statements', () => {
     expect(resultObject.errored).toBe(false);
   });
 });
+
+test('composed-class-names rule fails on missing local class names', () => {
+  return stylelint.lint({
+    config: {
+      plugins: ['./composed-class-names.js'],
+      rules: {
+        'css-modules/composed-class-names': [true, {}],
+      },
+    },
+    configBasedir: 'rules',
+    files: ['fixtures/composed-class-names/fails-local-class-name.css'],
+  }).then(function (resultObject) {
+    expect(resultObject.errored).toBe(true);
+  });
+});

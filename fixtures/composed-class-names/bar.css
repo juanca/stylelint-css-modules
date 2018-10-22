@@ -1,7 +1,3 @@
-.this-fails {
-  composes: does-not-exist;
-}
-
 .this-fails-external {
   composes: does-not-exist from './baz.css';
 }
