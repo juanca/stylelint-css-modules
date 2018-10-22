@@ -1,0 +1,24 @@
+.this-passes {
+}
+
+.this-passes-local {
+  composes: this-passes;
+}
+
+.this-passes-global {
+  composes: global from global;
+}
+
+.this-passes-complex {
+  composes: this-passes;
+  composes: global from global;
+  composes: baz from './baz.css';
+}
+
+.this-fails {
+  composes: does-not-exist;
+}
+
+.this-fails-external {
+  composes: does-not-exist from './baz.css';
+}
