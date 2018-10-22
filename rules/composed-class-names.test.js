@@ -17,7 +17,8 @@ test('composed-class-names rule parses correct compose statements', () => {
   return stylelint.lint(configuration({
     files: require.resolve('../fixtures/composed-class-names/passes.css'),
   })).then(function (resultObject) {
-    expect(resultObject.errored).toBe(false);
+    const output = JSON.parse(resultObject.output);
+    expect(output[0].warnings).toEqual([]);
   });
 });
 
@@ -28,7 +29,6 @@ test('composed-class-names rule fails on missing local class names', () => {
     expect(resultObject.errored).toBe(true);
 
     const output = JSON.parse(resultObject.output);
-    expect(output.length).toBe(1);
     expect(output[0].warnings[0].severity).toBe('error');
   });
 });
@@ -40,7 +40,6 @@ test('composed-class-names rule fails on missing external class names', () => {
     expect(resultObject.errored).toBe(true);
 
     const output = JSON.parse(resultObject.output);
-    expect(output.length).toBe(1);
     expect(output[0].warnings[0].severity).toBe('error');
   });
 });
@@ -52,7 +51,6 @@ test('composed-class-names rule fails on missing class names despite partial mat
     expect(resultObject.errored).toBe(true);
 
     const output = JSON.parse(resultObject.output);
-    expect(output.length).toBe(1);
     expect(output[0].warnings[0].severity).toBe('error');
   });
 });
