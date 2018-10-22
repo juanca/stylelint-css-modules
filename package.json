@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "node rules/composed-class-names-tests.js"
+    "test": "jest"
   },
   "author": "Juan Carlos Medina",
   "license": "MIT",
