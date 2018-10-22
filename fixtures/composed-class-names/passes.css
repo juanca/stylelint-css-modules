@@ -1,5 +1,4 @@
-.this-passes {
-}
+.this-passes {}
 
 .this-passes-local {
   composes: this-passes;
