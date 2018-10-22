@@ -9,7 +9,7 @@
 }
 
 .this-passes-complex {
-  composes: this-passes;
+  composes: this-passes this-passes-global;
   composes: global from global;
   composes: baz from './baz.css';
 }
