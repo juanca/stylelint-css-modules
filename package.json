@@ -9,7 +9,9 @@
   "author": "Juan Carlos Medina",
   "license": "MIT",
   "dependencies": {},
-  "devDependencies": {},
+  "devDependencies": {
+    "stylelint-test-rule-tape": "^0.2.0"
+  },
   "peerDependencies": {
     "stylelint": "^9.0.0"
   }
