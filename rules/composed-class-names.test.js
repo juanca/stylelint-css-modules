@@ -26,5 +26,9 @@ test('composed-class-names rule fails on missing local class names', () => {
     files: require.resolve('../fixtures/composed-class-names/fails-local-class-name.css'),
   })).then(function (resultObject) {
     expect(resultObject.errored).toBe(true);
+
+    const output = JSON.parse(resultObject.output);
+    expect(output.length).toBe(1);
+    expect(output[0].warnings[0].severity).toBe('error');
   });
 });
