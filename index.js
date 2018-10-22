@@ -3,7 +3,7 @@ const path = require('path');
 const stylelint = require('stylelint');
 
 const messages = stylelint.utils.ruleMessages('css-modules/test', {
-  expected: (className, filePath) => `Unable to find ${className} in ${filePath}`,
+  expected: (className, filePath) => `Unable to find composed "${className}" class in ${filePath}`,
 })
 
 module.exports = stylelint.createPlugin('css-modules/test', (primaryOption, secondaryOptionObject) => {
