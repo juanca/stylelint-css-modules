@@ -15,5 +15,7 @@ stylelint.lint({
 }).then(function (resultObject) {
   console.log('then', resultObject);
 }).catch(function (error) {
-  console.error('error', error);
+  console.log('Something went wrong. See below for details.');
+  console.log(error);
+  process.exit(1);
 });
