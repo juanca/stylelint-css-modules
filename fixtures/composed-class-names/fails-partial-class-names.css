@@ -1,0 +1,5 @@
+.does-not-exist-but-this-does {}
+
+.this-fails {
+  composes: does-not-exist;
+}

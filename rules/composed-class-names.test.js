@@ -44,3 +44,15 @@ test('composed-class-names rule fails on missing external class names', () => {
     expect(output[0].warnings[0].severity).toBe('error');
   });
 });
+
+test('composed-class-names rule fails on missing class names despite partial matches', () => {
+  return stylelint.lint(configuration({
+    files: require.resolve('../fixtures/composed-class-names/fails-partial-class-names.css'),
+  })).then(function (resultObject) {
+    expect(resultObject.errored).toBe(true);
+
+    const output = JSON.parse(resultObject.output);
+    expect(output.length).toBe(1);
+    expect(output[0].warnings[0].severity).toBe('error');
+  });
+});
