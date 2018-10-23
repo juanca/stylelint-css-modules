@@ -4,7 +4,7 @@
   "description": "Extended ruleset for stylelint on CSS modules",
   "keywords": [
     "stylelint",
-    "css modules",
+    "css modules"
   ],
   "main": "index.js",
   "scripts": {
