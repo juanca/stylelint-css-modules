@@ -1,6 +1,7 @@
 # stylelint-css-modules
 
 [![NPM version](http://img.shields.io/npm/v/stylelint-css-modules.svg)](https://www.npmjs.org/package/stylelint-css-modules)
+[![CircleCI status](https://circleci.com/gh/juanca/stylelint-css-modules.svg?style=shield)](https://circleci.com/gh/juanca/stylelint-css-modules)
 
 > Extended ruleset for stylelint on CSS modules
 

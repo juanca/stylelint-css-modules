@@ -1,6 +1,6 @@
 {
   "name": "stylelint-css-modules",
-  "version": "0.0.7",
+  "version": "0.0.8",
   "description": "Extended ruleset for stylelint on CSS modules",
   "keywords": [
     "stylelint",
