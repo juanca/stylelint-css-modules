@@ -1,20 +1,13 @@
-.this-passes {}
+.solo-class {}
 
 .nested-root .intermediary-node .nested-child {}
 
-.this-passes-local {
-  composes: this-passes;
+.lots-of-compositions {
+  composes: solo-class;
   composes: nested-root;
   composes: intermediary-node;
   composes: nested-child;
-}
-
-.this-passes-global {
-  composes: global from global;
-}
-
-.this-passes-complex {
-  composes: this-passes this-passes-global;
+  composes: solo-class nested-child;
   composes: global from global;
   composes: baz from './baz.css';
 }
