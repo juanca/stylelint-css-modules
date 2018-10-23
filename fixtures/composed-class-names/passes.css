@@ -1,10 +1,11 @@
 .this-passes {}
 
-.nested-root .nested-child {}
+.nested-root .intermediary-node .nested-child {}
 
 .this-passes-local {
   composes: this-passes;
   composes: nested-root;
+  composes: intermediary-node;
   composes: nested-child;
 }
 
