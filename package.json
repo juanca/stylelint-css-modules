@@ -1,13 +1,21 @@
 {
   "name": "stylelint-css-modules",
-  "version": "0.0.5",
-  "description": "",
+  "version": "0.0.6",
+  "description": "Extended ruleset for stylelint on CSS modules",
+  "keywords": [
+    "stylelint",
+    "css modules",
+  ],
   "main": "index.js",
   "scripts": {
     "test": "jest"
   },
   "author": "Juan Carlos Medina",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/juanca/stylelint-css-modules.git"
+  },
   "dependencies": {},
   "devDependencies": {
     "jest": "^23.6.0",
