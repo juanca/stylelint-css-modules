@@ -2,11 +2,16 @@
 
 .nested-root .intermediary-node .nested-child {}
 
+.chained-root.chained-node.chained-child {}
+
 .lots-of-compositions {
   composes: solo-class;
   composes: nested-root;
   composes: intermediary-node;
   composes: nested-child;
+  composes: chained-root;
+  composes: chained-node;
+  composes: chained-child;
   composes: solo-class nested-child;
   composes: global from global;
   composes: baz from './baz.css';
