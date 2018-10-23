@@ -1,7 +1,10 @@
 .this-passes {}
 
+.nested-root .nested-child {}
+
 .this-passes-local {
   composes: this-passes;
+  composes: nested-root;
 }
 
 .this-passes-global {
