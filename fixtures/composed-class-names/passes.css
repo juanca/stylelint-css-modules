@@ -5,6 +5,7 @@
 .this-passes-local {
   composes: this-passes;
   composes: nested-root;
+  composes: nested-child;
 }
 
 .this-passes-global {
