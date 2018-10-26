@@ -24,6 +24,16 @@ rules: {
 },
 ```
 
+## Contributing
+
+1. Fork
+2. Build
+3. Test: `npm test`
+4. Submit a Pull Request
+
+We are looking for simple and tested code.
+A green build is a requirement.
+
 
 ## css-modules/composed-class-names
 
