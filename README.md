@@ -35,11 +35,13 @@ We are looking for simple and tested code.
 A green build is a requirement.
 
 
-## css-modules/composed-class-names
+## Ruleset
+
+### css-modules/composed-class-names
 
 Ensures each composed class names exists in the targeted file.
 
-### Good
+#### Good
 
 ```
 .solo-class {}
@@ -69,7 +71,7 @@ where `baz.css`
 ```
 
 
-### Bad
+#### Bad
 
 ```
 .lots-of-compositions {
