@@ -27,7 +27,7 @@ rules: {
 
 ## css-modules/composed-class-names
 
-Ensures each composed class names exists in the targeted file.
+Ensures each composed class name exists in the targeted file.
 
 ### Good
 
