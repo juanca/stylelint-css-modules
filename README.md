@@ -24,12 +24,24 @@ rules: {
 },
 ```
 
+## Contributing
 
-## css-modules/composed-class-names
+1. Fork
+2. Build
+3. Test: `npm test`
+4. Submit a Pull Request
+
+We are looking for simple and tested code.
+A green build is a requirement.
+
+
+## Ruleset
+
+### css-modules/composed-class-names
 
 Ensures each composed class name exists in the targeted file.
 
-### Good
+#### Good
 
 ```
 .solo-class {}
@@ -59,7 +71,7 @@ where `baz.css`
 ```
 
 
-### Bad
+#### Bad
 
 ```
 .lots-of-compositions {
