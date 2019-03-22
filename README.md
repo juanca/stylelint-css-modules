@@ -24,7 +24,6 @@ rules: {
 },
 ```
 
-
 ## css-modules/composed-class-names
 
 Ensures each composed class names exists in the targeted file.
@@ -52,12 +51,11 @@ Ensures each composed class names exists in the targeted file.
 }
 ```
 
-where `baz.css`
+where `baz.css`:
 
 ```
 .baz {}
 ```
-
 
 ### Bad
 
