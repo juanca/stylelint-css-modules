@@ -41,6 +41,7 @@ module.exports = stylelint.createPlugin('css-modules/css-variables', (primaryOpt
     const contextPath = path.dirname(result.opts.from);
     const imports = (result.css.match(/(?<=@import )['"].*['"]/g) || [])
       .map(line => line.slice(1, -1))
+      .filter(filePath => filePath.includes('.')) // TODO: Leverage Webpack extensions -- somehow
       .map(filePath => resolveFilePath(contextPath, filePath))
     ;
 
