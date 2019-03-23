@@ -71,3 +71,54 @@ where `baz.css`
 ```
 .baz {}
 ```
+
+## css-modules/css-variables
+
+Ensures each CSS variable is defined locally or in some imported file.
+Allows for associating certain variables with particular files for better error messaging.
+
+### Good
+
+```
+@import './baz.css';
+
+:root {
+  --some-var: 1;
+}
+
+.foo {
+  margin: var(--some-var);
+  padding: var(--baz-some-var);
+}
+```
+
+where `baz.css`:
+
+```
+:root {
+  --bar-some-var: 1;
+}
+```
+
+### Bad
+
+```
+.foo {
+  margin: var(--some-undefined-var);
+  padding: var(--baz-some-var);
+}
+```
+
+where `baz.css`:
+
+```
+:root {
+  --bar-some-var: 1;
+}
+```
+
+and rule configuration:
+
+```
+???
+```

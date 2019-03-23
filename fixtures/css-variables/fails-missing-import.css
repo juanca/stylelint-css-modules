@@ -1,0 +1,8 @@
+:root {
+  --some-var: 1;
+}
+
+.foo {
+  margin: var(--some-var);
+  padding: var(--baz-some-var);
+}
