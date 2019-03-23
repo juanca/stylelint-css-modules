@@ -24,11 +24,23 @@ rules: {
 },
 ```
 
-## css-modules/composed-class-names
+## Contributing
 
-Ensures each composed class names exists in the targeted file.
+1. Fork
+2. Build
+3. Test: `npm test`
+4. Submit a Pull Request
 
-### Good
+We are looking for simple and tested code.
+A green build is a requirement.
+
+## Ruleset
+
+### css-modules/composed-class-names
+
+Ensures each composed class name exists in the targeted file.
+
+#### Good
 
 ```
 .solo-class {}
@@ -57,7 +69,8 @@ where `baz.css`:
 .baz {}
 ```
 
-### Bad
+
+#### Bad
 
 ```
 .lots-of-compositions {
@@ -72,12 +85,12 @@ where `baz.css`
 .baz {}
 ```
 
-## css-modules/css-variables
+### css-modules/css-variables
 
 Ensures each CSS variable is defined locally or in some imported file.
 Allows for associating certain variables with particular files for better error messaging.
 
-### Good
+#### Good
 
 ```
 @import './baz.css';
@@ -100,7 +113,7 @@ where `baz.css`:
 }
 ```
 
-### Bad
+#### Bad
 
 ```
 .foo {
