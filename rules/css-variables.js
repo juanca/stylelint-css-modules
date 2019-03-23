@@ -45,7 +45,7 @@ module.exports = stylelint.createPlugin('css-modules/css-variables', (primaryOpt
     ;
 
     root.walkDecls((decl) => {
-      (decl.value.match(/var\(.*\)/g) || [])
+      (decl.value.match(/var\([^\)]*\)/g) || [])
         .map(expression => expression.slice(4, -1))
         .filter(variable => !RegExp(`${variable}:`).test(decl.source.input.css)) // Is it defined locally?
         .filter(variable => !imports.find(filePath => RegExp(`${variable}:`).test(fs.readFileSync(filePath)))) // Is it defined in an imported file?
