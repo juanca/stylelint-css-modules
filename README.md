@@ -21,6 +21,7 @@ plugins: [
 ],
 rules: {
   'css-modules/composed-class-names': true,
+  'css-modules/css-variables': true,
 },
 ```
 
@@ -88,7 +89,6 @@ where `baz.css`
 ### css-modules/css-variables
 
 Ensures each CSS variable is defined locally or in some imported file.
-Allows for associating certain variables with particular files for better error messaging.
 
 #### Good
 
@@ -128,10 +128,4 @@ where `baz.css`:
 :root {
   --bar-some-var: 1;
 }
-```
-
-and rule configuration:
-
-```
-???
 ```
