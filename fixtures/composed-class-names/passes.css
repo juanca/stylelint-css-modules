@@ -15,4 +15,5 @@
   composes: solo-class nested-child;
   composes: global from global;
   composes: baz from './baz.css';
+  composes: bazzy from './baz.css';
 }

@@ -1,1 +1,3 @@
 .baz {}
+
+@interpolatedValue(className: '.bazzy')
