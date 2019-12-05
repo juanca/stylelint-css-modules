@@ -3,7 +3,8 @@ const path = require('path');
 const stylelint = require('stylelint');
 
 const messages = stylelint.utils.ruleMessages('css-modules/composed-class-names', {
-  expected: (className, filePath) => `Unable to find composed "${className}" class in ${filePath}`,
+  expectedClassName: (className, filePath) => `Unable to find composed "${className}" class in ${filePath}`,
+  expectedFile: (filePath) => `File ${filePath} does not appear to exist`,
 })
 
 module.exports = stylelint.createPlugin('css-modules/composed-class-names', (primaryOption, secondaryOptionObject) => {
@@ -51,6 +52,18 @@ module.exports = stylelint.createPlugin('css-modules/composed-class-names', (pri
         }
 
         const fromFilePath = resolveFilePath(contextPath, fromExpression.slice(1, -1));
+
+        if(!fs.existsSync(fromFilePath)) {
+          stylelint.utils.report({
+            index: decl.lastEach,
+            message: messages.expectedFile(fromFilePath),
+            node: decl,
+            result: result,
+            ruleName: 'css-modules/composed-class-names',
+          });
+          return;
+        }
+
         const fileContents = fs.readFileSync(fromFilePath, 'utf-8');
 
         classNames
@@ -58,7 +71,7 @@ module.exports = stylelint.createPlugin('css-modules/composed-class-names', (pri
           .filter(className => !RegExp(`\\.${className}[\\s\\.,:{'"]`).test(fileContents))
           .forEach(className => stylelint.utils.report({
             index: decl.lastEach,
-            message: messages.expected(className, fromFilePath),
+            message: messages.expectedClassName(className, fromFilePath),
             node: decl,
             result: result,
             ruleName: 'css-modules/composed-class-names',

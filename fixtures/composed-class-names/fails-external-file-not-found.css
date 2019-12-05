@@ -1,0 +1,3 @@
+.this-fails-external {
+  composes: anything from './does-not-exist.css';
+}
