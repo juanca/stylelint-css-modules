@@ -7,22 +7,24 @@
 
 ## Example usage
 
-1. Install
+### Install
 
-```
+```bash
 npm install stylelint-css-modules --save-dev
 ```
 
-2. Configure
+### Configure .stylelintrc.js
 
-```
-plugins: [
-  'stylelint-css-modules',
-],
-rules: {
-  'css-modules/composed-class-names': true,
-  'css-modules/css-variables': true,
-},
+```js
+module.exports = {
+  plugins: [
+    'stylelint-css-modules',
+  ],
+  rules: {
+    'css-modules/composed-class-names': true,
+    'css-modules/css-variables': true,
+  },
+}
 ```
 
 ## Contributing
@@ -43,7 +45,7 @@ Ensures each composed class name exists in the targeted file.
 
 #### Good
 
-```
+```css
 .solo-class {}
 
 .nested-root .intermediary-node .nested-child {}
@@ -66,14 +68,13 @@ Ensures each composed class name exists in the targeted file.
 
 where `baz.css`:
 
-```
+```css
 .baz {}
 ```
 
-
 #### Bad
 
-```
+```css
 .lots-of-compositions {
   composes: does-not-exist;
   composes: does-not-exist from './baz.css';
@@ -82,7 +83,7 @@ where `baz.css`:
 
 where `baz.css`
 
-```
+```css
 .baz {}
 ```
 
