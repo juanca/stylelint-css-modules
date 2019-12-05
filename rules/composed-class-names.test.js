@@ -55,6 +55,17 @@ test('composed-class-names rule fails on missing external file', () => {
   });
 });
 
+test('composed-class-names rule fails on path that is not a file', () => {
+  return stylelint.lint(configuration({
+    files: require.resolve('../fixtures/composed-class-names/fails-external-path-not-a-file.css'),
+  })).then(function (resultObject) {
+    expect(resultObject.errored).toBe(true);
+
+    const output = JSON.parse(resultObject.output);
+    expect(output[0].warnings[0].severity).toBe('error');
+  });
+});
+
 test('composed-class-names rule fails on missing class names despite partial matches', () => {
   return stylelint.lint(configuration({
     files: require.resolve('../fixtures/composed-class-names/fails-partial-class-names.css'),

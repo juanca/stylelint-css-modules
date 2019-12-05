@@ -4,7 +4,8 @@ const stylelint = require('stylelint');
 
 const messages = stylelint.utils.ruleMessages('css-modules/composed-class-names', {
   expectedClassName: (className, filePath) => `Unable to find composed "${className}" class in ${filePath}`,
-  expectedFile: (filePath) => `File ${filePath} does not appear to exist`,
+  expectedFileExists: (filePath) => `No file found at this path: ${filePath}`,
+  expectedIsFile: (filePath) => `Path is a directory, not a file: ${filePath}`,
 })
 
 module.exports = stylelint.createPlugin('css-modules/composed-class-names', (primaryOption, secondaryOptionObject) => {
@@ -56,7 +57,18 @@ module.exports = stylelint.createPlugin('css-modules/composed-class-names', (pri
         if(!fs.existsSync(fromFilePath)) {
           stylelint.utils.report({
             index: decl.lastEach,
-            message: messages.expectedFile(fromFilePath),
+            message: messages.expectedFileExists(fromFilePath),
+            node: decl,
+            result: result,
+            ruleName: 'css-modules/composed-class-names',
+          });
+          return;
+        }
+
+        if(fs.statSync(fromFilePath).isDirectory()) {
+          stylelint.utils.report({
+            index: decl.lastEach,
+            message: messages.expectedIsFile(fromFilePath),
             node: decl,
             result: result,
             ruleName: 'css-modules/composed-class-names',
