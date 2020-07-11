@@ -12,3 +12,11 @@
   font-size: calc(2 * var(--base-font-size) * 2);
   line-height: calc(var(--base-font-size) + var(--baz-some-var));
 }
+
+.two {
+  color: var(--my-var, red);
+}
+
+.three {
+  background-color: var(--my-var, var(--my-background, pink)); /* pink if --my-var and --my-background are not defined */
+}

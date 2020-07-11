@@ -88,7 +88,7 @@ where `baz.css`
 
 ### css-modules/css-variables
 
-Ensures each CSS variable is defined locally or in some imported file.
+Ensures each CSS variable is defined locally or in some imported file unless it has a fallback.
 
 #### Good
 
@@ -102,6 +102,7 @@ Ensures each CSS variable is defined locally or in some imported file.
 .foo {
   margin: var(--some-var);
   padding: var(--baz-some-var);
+  padding: var(--bar-some-var, 10px);
 }
 ```
 
