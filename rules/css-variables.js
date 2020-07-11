@@ -1,6 +1,7 @@
 const fs = require('fs');
 const path = require('path');
 const stylelint = require('stylelint');
+const cssVariablesParser = require('./css-variables-parser.js');
 
 const messages = stylelint.utils.ruleMessages('css-modules/css-variables', {
   expected: (variable) => `Unable to find CSS variable "${variable}"`,
@@ -37,6 +38,14 @@ module.exports = stylelint.createPlugin('css-modules/css-variables', (primaryOpt
     }
   }
 
+  function expressionReducer(expression) {
+    if (expression.length === 1) {
+      return expression[0];
+    }
+
+    return expression[1] instanceof Array ? expressionReducer(expression[1]) : expression[1];
+  }
+
   return (root, result) => {
     const contextPath = path.dirname(result.opts.from);
     const imports = (result.css.match(/(?<=@import )['"].*['"]/g) || [])
@@ -46,8 +55,11 @@ module.exports = stylelint.createPlugin('css-modules/css-variables', (primaryOpt
     ;
 
     root.walkDecls((decl) => {
-      (decl.value.match(/var\([^\)]*\)/g) || [])
-        .map(expression => expression.slice(4, -1))
+      const expressions = cssVariablesParser(decl.value);
+      const variableValues = expressions.map(expressionReducer);
+
+      variableValues
+        .filter(value => value.includes('--')) // Skip validation if the css variable had a non-var fallback
         .filter(variable => !RegExp(`${variable}:`).test(decl.source.input.css)) // Is it defined locally?
         .filter(variable => !imports.find(filePath => RegExp(`${variable}:`).test(fs.readFileSync(filePath)))) // Is it defined in an imported file?
         .forEach(variable => stylelint.utils.report({
