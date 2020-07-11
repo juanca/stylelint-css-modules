@@ -12,9 +12,7 @@ jobs:
       - restore_cache:
           keys:
           - v1-dependencies-{{ checksum "package.json" }}
-
       - run: npm install
-
       - save_cache:
           paths:
             - node_modules
@@ -23,9 +21,7 @@ jobs:
       - restore_cache:
           keys:
           - v1-dependencies-9-{{ checksum "package.json" }}
-
       - run: npm run test9
-
       - save_cache:
           paths:
             - node_modules
@@ -34,9 +30,7 @@ jobs:
       - restore_cache:
           keys:
           - v1-dependencies-10-{{ checksum "package.json" }}
-
       - run: npm run test10
-
       - save_cache:
           paths:
             - node_modules
@@ -45,10 +39,26 @@ jobs:
       - restore_cache:
           keys:
           - v1-dependencies-11-{{ checksum "package.json" }}
-
       - run: npm run test11
-
       - save_cache:
           paths:
             - node_modules
           key: v1-dependencies-11-{{ checksum "package.json" }}
+
+      - restore_cache:
+          keys:
+          - v1-dependencies-12-{{ checksum "package.json" }}
+      - run: npm run test12
+      - save_cache:
+          paths:
+            - node_modules
+          key: v1-dependencies-12-{{ checksum "package.json" }}
+
+      - restore_cache:
+          keys:
+          - v1-dependencies-13-{{ checksum "package.json" }}
+      - run: npm run test13
+      - save_cache:
+          paths:
+            - node_modules
+          key: v1-dependencies-13-{{ checksum "package.json" }}

@@ -32,6 +32,8 @@ rules: {
   - `npm run test9`
   - `npm run test10`
   - `npm run test11`
+  - `npm run test12`
+  - `npm run test13`
 3. Test: `npm test` (for running tests without installing Stylelint)
 4. Submit a Pull Request
 
