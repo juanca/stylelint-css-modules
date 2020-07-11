@@ -3,7 +3,8 @@ const path = require('path');
 const stylelint = require('stylelint');
 
 const messages = stylelint.utils.ruleMessages('css-modules/composed-class-names', {
-  expected: (className, filePath) => `Unable to find composed "${className}" class in ${filePath}`,
+  classDoesNotExist: (className, filePath) => `Unable to find composed "${className}" class in ${filePath}`,
+  fileDoesNotExist: (filePath) => `Unable to find file "${filePath}"`,
 })
 
 module.exports = stylelint.createPlugin('css-modules/composed-class-names', (primaryOption, secondaryOptionObject) => {
@@ -45,24 +46,33 @@ module.exports = stylelint.createPlugin('css-modules/composed-class-names', (pri
         const expressions = decl.value.split('from');
         const classNames = expressions[0].replace(/\s+/g, ' ').trim().split(' ');
         const fromExpression = expressions[1] ? expressions[1].trim() : `'${result.opts.from}'`;
-
-        if (fromExpression === 'global') {
-          return;
-        }
-
         const fromFilePath = resolveFilePath(contextPath, fromExpression.slice(1, -1));
-        const fileContents = fs.readFileSync(fromFilePath, 'utf-8');
 
-        classNames
-          .filter(className => !className.includes('#'))
-          .filter(className => !RegExp(`\\.${className}[\\s\\.,:{'"[]`).test(fileContents))
-          .forEach(className => stylelint.utils.report({
+        if (fromExpression === 'global') return;
+
+        if (fs.existsSync(fromFilePath)) {
+          const fileContents = fs.readFileSync(fromFilePath, 'utf-8');
+
+          classNames
+            .filter(className => !className.includes('#'))
+            .filter(className => !RegExp(`\\.${className}[\\s\\.,:{'"[]`).test(fileContents))
+            .forEach(className => stylelint.utils.report({
+              index: decl.lastEach,
+              message: messages.classDoesNotExist(className, fromFilePath),
+              node: decl,
+              result: result,
+              ruleName: 'css-modules/composed-class-names',
+            }));
+
+        } else {
+          stylelint.utils.report({
             index: decl.lastEach,
-            message: messages.expected(className, fromFilePath),
+            message: messages.fileDoesNotExist(fromFilePath),
             node: decl,
             result: result,
             ruleName: 'css-modules/composed-class-names',
-          }));
+          })
+        }
       }
     });
   };

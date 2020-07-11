@@ -54,3 +54,14 @@ test('composed-class-names rule fails on missing class names despite partial mat
     expect(output[0].warnings[0].severity).toBe('error');
   });
 });
+
+test('composed-class-names rule fails on missing files', () => {
+  return stylelint.lint(configuration({
+    files: require.resolve('../fixtures/composed-class-names/fails-with-missing-file.css'),
+  })).then(function (resultObject) {
+    expect(resultObject.errored).toBe(true);
+
+    const output = JSON.parse(resultObject.output);
+    expect(output[0].warnings[0].severity).toBe('error');
+  });
+});
