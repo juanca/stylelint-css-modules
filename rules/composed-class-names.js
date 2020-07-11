@@ -50,7 +50,7 @@ module.exports = stylelint.createPlugin('css-modules/composed-class-names', (pri
 
         if (fromExpression === 'global') return;
 
-        if (fs.existsSync(fromFilePath)) {
+        if (fs.existsSync(fromFilePath) && !fs.statSync(fromFilePath).isDirectory()) {
           const fileContents = fs.readFileSync(fromFilePath, 'utf-8');
 
           classNames

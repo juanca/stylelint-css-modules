@@ -1,7 +1,11 @@
 .foo {
-  composes: bar from './some-file.css';
+  composes: bar from './some-missing-file.css';
 }
 
 .baz {
-  composes: bar from './some-dir';
+  composes: bar from './some-missing-dir';
+}
+
+.baz {
+  composes: bar from '.';
 }
