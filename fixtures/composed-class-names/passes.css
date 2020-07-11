@@ -4,6 +4,8 @@
 
 .chained-root.chained-node.chained-child {}
 
+.class-with-attr[some-attr] {}
+
 .lots-of-compositions {
   composes: solo-class;
   composes: nested-root;
@@ -14,6 +16,7 @@
   composes: chained-child;
   composes: solo-class nested-child;
   composes: global from global;
+  composes: class-with-attr;
   composes: baz from './baz.css';
   composes: bazzy from './baz.css';
 }

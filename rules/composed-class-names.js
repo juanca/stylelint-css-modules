@@ -55,7 +55,7 @@ module.exports = stylelint.createPlugin('css-modules/composed-class-names', (pri
 
         classNames
           .filter(className => !className.includes('#'))
-          .filter(className => !RegExp(`\\.${className}[\\s\\.,:{'"]`).test(fileContents))
+          .filter(className => !RegExp(`\\.${className}[\\s\\.,:{'"[]`).test(fileContents))
           .forEach(className => stylelint.utils.report({
             index: decl.lastEach,
             message: messages.expected(className, fromFilePath),
