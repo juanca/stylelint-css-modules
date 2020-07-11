@@ -28,8 +28,8 @@ rules: {
 ## Contributing
 
 1. Fork
-2. Build
-3. Test: `npm test`
+2. Install: `npm run test9` or `npm run test10`
+3. Test: `npm test` (for running tests without installing Stylelint)
 4. Submit a Pull Request
 
 We are looking for simple and tested code.

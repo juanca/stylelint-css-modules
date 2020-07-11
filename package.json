@@ -9,7 +9,9 @@
   "main": "index.js",
   "scripts": {
     "test": "jest",
-    "test:debug": "node --inspect-brk node_modules/.bin/jest --runInBand"
+    "test:debug": "node --inspect-brk node_modules/.bin/jest --runInBand",
+    "test9": "npm install stylelint@9 --no-save && npm test",
+    "test10": "npm install stylelint@10 --no-save && npm test"
   },
   "author": "Juan Carlos Medina",
   "license": "MIT",
@@ -19,8 +21,7 @@
   },
   "dependencies": {},
   "devDependencies": {
-    "jest": "^24.5.0",
-    "stylelint": "^9.10.1"
+    "jest": "^24.5.0"
   },
   "peerDependencies": {
     "stylelint": "^9.0.0 || ^10.0.0"
