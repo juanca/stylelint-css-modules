@@ -28,7 +28,10 @@ rules: {
 ## Contributing
 
 1. Fork
-2. Install: `npm run test9` or `npm run test10`
+2. Install with a variant of Stylelint
+  - `npm run test9`
+  - `npm run test10`
+  - `npm run test11`
 3. Test: `npm test` (for running tests without installing Stylelint)
 4. Submit a Pull Request
 

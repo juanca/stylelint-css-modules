@@ -41,3 +41,14 @@ jobs:
           paths:
             - node_modules
           key: v1-dependencies-10-{{ checksum "package.json" }}
+
+      - restore_cache:
+          keys:
+          - v1-dependencies-11-{{ checksum "package.json" }}
+
+      - run: npm run test11
+
+      - save_cache:
+          paths:
+            - node_modules
+          key: v1-dependencies-11-{{ checksum "package.json" }}
