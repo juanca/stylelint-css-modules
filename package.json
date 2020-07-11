@@ -24,7 +24,7 @@
   },
   "dependencies": {},
   "devDependencies": {
-    "jest": "^24.5.0"
+    "jest": "^26.1.0"
   },
   "peerDependencies": {
     "stylelint": "^9.0.0 || ^10.0.0"
