@@ -1,5 +1,4 @@
 const stylelint = require('stylelint');
-const pattern = require('./composed-class-names.js');
 
 function configuration(options) {
   return Object.assign({
