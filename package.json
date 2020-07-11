@@ -27,6 +27,6 @@
     "jest": "^26.1.0"
   },
   "peerDependencies": {
-    "stylelint": "^9.0.0 || ^10.0.0"
+    "stylelint": "^9 || ^10 || ^11 || ^12 || ^13"
   }
 }
