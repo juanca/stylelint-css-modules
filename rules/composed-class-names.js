@@ -1,5 +1,6 @@
 const fs = require('fs');
 const path = require('path');
+const resolve = require('enhanced-resolve');
 const stylelint = require('stylelint');
 
 const messages = stylelint.utils.ruleMessages('css-modules/composed-class-names', {
@@ -8,35 +9,11 @@ const messages = stylelint.utils.ruleMessages('css-modules/composed-class-names'
 })
 
 module.exports = stylelint.createPlugin('css-modules/composed-class-names', (primaryOption, secondaryOptionObject) => {
+  const defaultResolveOptions = {
+    extensions: ['.css'],
+  };
   const options = secondaryOptionObject || { resolve: undefined };
-  const resolve = options.resolve || { alias: {}, modules: [] };
-  const aliasMap = resolve.alias || {};
-  const aliases = Object.keys(aliasMap);
-  const modules = resolve.modules || [];
-
-  function resolveFilePath(contextPath, filePath) {
-    if (filePath[0] === '.') {
-      return path.join(contextPath, filePath);
-    } else {
-      // Copy webpack resolution algorithm -- is this a module I can just import?
-      let resolvedFilePath = filePath;
-      const rootDirectory = resolvedFilePath.split(path.sep)[0];
-      const rootAlias = aliases.find(alias => alias === rootDirectory);
-
-      if (rootAlias) {
-        resolvedFilePath = path.join(aliasMap[rootAlias], ...resolvedFilePath.split(path.sep).slice(1))
-        if (fs.existsSync(resolvedFilePath)) {
-          return resolvedFilePath;
-        }
-      }
-
-      resolvedFilePath = modules
-        .map(module => path.join(module, resolvedFilePath))
-        .find(maybePath => fs.existsSync(maybePath));
-
-      return resolvedFilePath || filePath;
-    }
-  }
+  const resolveFilePath = resolve.create.sync(Object.assign({}, defaultResolveOptions, options.resolve));
 
   return (root, result) => {
     const contextPath = path.dirname(result.opts.from);
@@ -46,9 +23,14 @@ module.exports = stylelint.createPlugin('css-modules/composed-class-names', (pri
         const expressions = decl.value.split('from');
         const classNames = expressions[0].replace(/\s+/g, ' ').trim().split(' ');
         const fromExpression = expressions[1] ? expressions[1].trim() : `'${result.opts.from}'`;
-        const fromFilePath = resolveFilePath(contextPath, fromExpression.slice(1, -1));
-
         if (fromExpression === 'global') return;
+
+        let fromFilePath;
+        try {
+          fromFilePath = resolveFilePath(contextPath, fromExpression.slice(1, -1));
+        } catch (e) {
+          fromFilePath = path.join(contextPath, fromExpression.slice(1, -1));
+        }
 
         if (fs.existsSync(fromFilePath) && !fs.statSync(fromFilePath).isDirectory()) {
           const fileContents = fs.readFileSync(fromFilePath, 'utf-8');

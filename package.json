@@ -22,7 +22,9 @@
     "type": "git",
     "url": "https://github.com/juanca/stylelint-css-modules.git"
   },
-  "dependencies": {},
+  "dependencies": {
+    "enhanced-resolve": "^4.3.0"
+  },
   "devDependencies": {
     "jest": "^26.1.0"
   },

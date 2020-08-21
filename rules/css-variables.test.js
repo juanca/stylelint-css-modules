@@ -5,7 +5,11 @@ function configuration(options) {
     config: {
       plugins: ['./css-variables.js'],
       rules: {
-        'css-modules/css-variables': [true, {}],
+        'css-modules/css-variables': [true, {
+          resolve: {
+            extensions: ['.css', '.scss'],
+          },
+        }],
       },
     },
     configBasedir: 'rules',
