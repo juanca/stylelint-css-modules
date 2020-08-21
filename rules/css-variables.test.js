@@ -8,6 +8,7 @@ function configuration(options) {
         'css-modules/css-variables': [true, {
           resolve: {
             extensions: ['.css', '.scss'],
+            modules: ['src'],
           },
         }],
       },

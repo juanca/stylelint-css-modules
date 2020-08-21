@@ -55,6 +55,24 @@ rules: {
 },
 ```
 
+In order to leverage the SASS `~` operator, add an additional module:
+
+```
+```js
+plugins: [
+  'stylelint-css-modules',
+],
+rules: {
+  'css-modules/composed-class-names': true,
+  'css-modules/css-variables': [true, {
+    resolve: {
+      modules: ['node_modules', 'app/src'],
+    },
+  }],
+},
+```
+```
+
 ## Contributing
 
 1. Fork

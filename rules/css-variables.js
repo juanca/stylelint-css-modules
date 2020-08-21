@@ -13,7 +13,19 @@ module.exports = stylelint.createPlugin('css-modules/css-variables', (primaryOpt
     extensions: ['.css'],
   };
   const options = secondaryOptionObject || { resolve: undefined };
-  const resolveFilePath = resolve.create.sync(Object.assign({}, defaultResolveOptions, options.resolve));
+
+  function resolveFilePath(contextPath, filePath) {
+    const resolver = resolve.create.sync(Object.assign({}, defaultResolveOptions, options.resolve));
+
+    if (filePath[0] === '~') {
+      // This seems to be a special case for SASS / Angular.
+      // The `~` is a way to reference some root path.
+      // For `enhanced-resolve`, configure the `modules` option.
+      return resolver(contextPath, filePath.slice(1));
+    }
+
+    return resolver(contextPath, filePath);
+  }
 
   function expressionReducer(expression) {
     if (expression.length === 1) {
