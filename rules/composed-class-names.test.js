@@ -5,7 +5,11 @@ function configuration(options) {
     config: {
       plugins: ['./composed-class-names.js'],
       rules: {
-        'css-modules/composed-class-names': [true, {}],
+        'css-modules/composed-class-names': [true, {
+          resolve: {
+            modules: ['src'],
+          },
+        }],
       },
     },
     configBasedir: 'rules',

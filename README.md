@@ -25,6 +25,52 @@ rules: {
 },
 ```
 
+3. Advanced configuration
+
+The stylelint plugin uses `enhanced-resolve` to find referenced files.
+Each rule can configure the resolver with a `resolve` object.
+By default, this stylelint plugin is configured with:
+
+```js
+{
+  resolve: {
+    extensions: ['.css'],
+  },
+}
+```
+
+In order to find SASS files, add an additional extension:
+
+```js
+plugins: [
+  'stylelint-css-modules',
+],
+rules: {
+  'css-modules/composed-class-names': true,
+  'css-modules/css-variables': [true, {
+    resolve: {
+      extensions: ['.css', '.scss'],
+    },
+  }],
+},
+```
+
+In order to leverage the SASS `~` operator, add an additional module:
+
+```js
+plugins: [
+  'stylelint-css-modules',
+],
+rules: {
+  'css-modules/composed-class-names': true,
+  'css-modules/css-variables': [true, {
+    resolve: {
+      modules: ['node_modules', 'app/src'],
+    },
+  }],
+},
+```
+
 ## Contributing
 
 1. Fork

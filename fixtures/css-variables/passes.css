@@ -1,5 +1,7 @@
 @import './bar.css';
 @import './baz.css';
+@import './sassy.scss';
+@import '~foo.css';
 
 :root {
   --some-var: 1;
@@ -11,10 +13,12 @@
   padding: var(--baz-some-var);
   font-size: calc(2 * var(--base-font-size) * 2);
   line-height: calc(var(--base-font-size) + var(--baz-some-var));
+  border-width: var(--sass-border-width);
 }
 
 .two {
   color: var(--my-var, red);
+  border-width: var(--src-border-width);
 }
 
 .three {

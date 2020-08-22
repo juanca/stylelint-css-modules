@@ -19,4 +19,5 @@
   composes: class-with-attr;
   composes: baz from './baz.css';
   composes: bazzy from './baz.css';
+  composes: sassy from '~sass.css';
 }

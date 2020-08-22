@@ -1,6 +1,6 @@
 {
   "name": "stylelint-css-modules",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "description": "Extended ruleset for stylelint on CSS modules",
   "keywords": [
     "stylelint",
@@ -22,7 +22,9 @@
     "type": "git",
     "url": "https://github.com/juanca/stylelint-css-modules.git"
   },
-  "dependencies": {},
+  "dependencies": {
+    "enhanced-resolve": "^4.3.0"
+  },
   "devDependencies": {
     "jest": "^26.1.0"
   },
