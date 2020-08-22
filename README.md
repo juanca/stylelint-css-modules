@@ -28,7 +28,7 @@ rules: {
 3. Advanced configuration
 
 The stylelint plugin uses `enhanced-resolve` to find referenced files.
-Each rule can configured the resolver with a `resolve` object.
+Each rule can configure the resolver with a `resolve` object.
 By default, this stylelint plugin is configured with:
 
 ```js
@@ -57,7 +57,6 @@ rules: {
 
 In order to leverage the SASS `~` operator, add an additional module:
 
-```
 ```js
 plugins: [
   'stylelint-css-modules',
@@ -70,7 +69,6 @@ rules: {
     },
   }],
 },
-```
 ```
 
 ## Contributing
