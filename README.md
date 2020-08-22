@@ -27,49 +27,61 @@ rules: {
 
 3. Advanced configuration
 
-The stylelint plugin uses `enhanced-resolve` to find referenced files.
-Each rule can configure the resolver with a `resolve` object.
-By default, this stylelint plugin is configured with:
+<details>
+  <summary>Default configuration</summary>
 
-```js
-{
-  resolve: {
-    extensions: ['.css'],
+  The stylelint plugin uses `enhanced-resolve` to find referenced files.
+  Each rule can configure the resolver with a `resolve` object.
+  By default, this stylelint plugin is configured with:
+
+  ```js
+  {
+    resolve: {
+      extensions: ['.css'],
+    },
+  }
+  ```
+</details>
+
+<details>
+  <summary>Configuring extensions</summary>
+
+  In order to find SASS files, add an additional extension:
+
+  ```js
+  plugins: [
+    'stylelint-css-modules',
+  ],
+  rules: {
+    'css-modules/composed-class-names': true,
+    'css-modules/css-variables': [true, {
+      resolve: {
+        extensions: ['.css', '.scss'],
+      },
+    }],
   },
-}
-```
+  ```
+</details>
 
-In order to find SASS files, add an additional extension:
+<details>
+  <summary>Configuring modules (e.g. `~` operator)</summary>
 
-```js
-plugins: [
-  'stylelint-css-modules',
-],
-rules: {
-  'css-modules/composed-class-names': true,
-  'css-modules/css-variables': [true, {
-    resolve: {
-      extensions: ['.css', '.scss'],
-    },
-  }],
-},
-```
+  In order to leverage the SASS `~` operator, add an additional module:
 
-In order to leverage the SASS `~` operator, add an additional module:
-
-```js
-plugins: [
-  'stylelint-css-modules',
-],
-rules: {
-  'css-modules/composed-class-names': true,
-  'css-modules/css-variables': [true, {
-    resolve: {
-      modules: ['node_modules', 'app/src'],
-    },
-  }],
-},
-```
+  ```js
+  plugins: [
+    'stylelint-css-modules',
+  ],
+  rules: {
+    'css-modules/composed-class-names': true,
+    'css-modules/css-variables': [true, {
+      resolve: {
+        modules: ['node_modules', 'app/src'],
+      },
+    }],
+  },
+  ```
+</details>
 
 ## Contributing
 
