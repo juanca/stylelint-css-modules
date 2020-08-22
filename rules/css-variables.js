@@ -12,7 +12,8 @@ module.exports = stylelint.createPlugin('css-modules/css-variables', (primaryOpt
   const defaultResolveOptions = {
     extensions: ['.css'],
   };
-  const options = secondaryOptionObject || { resolve: undefined };
+  const options = secondaryOptionObject || {};
+
 
   function resolveFilePath(contextPath, filePath) {
     const resolver = resolve.create.sync(Object.assign({}, defaultResolveOptions, options.resolve));
@@ -42,6 +43,8 @@ module.exports = stylelint.createPlugin('css-modules/css-variables', (primaryOpt
       .filter(filePath => filePath.includes('.')) // TODO: Leverage Webpack extensions -- somehow
       .map(filePath => resolveFilePath(contextPath, filePath))
     ;
+    const globals = (secondaryOptionObject.globals || [])
+      .map(filePath => resolveFilePath(contextPath, filePath));
 
     root.walkDecls((decl) => {
       const expressions = cssVariablesParser(decl.value);
@@ -50,6 +53,7 @@ module.exports = stylelint.createPlugin('css-modules/css-variables', (primaryOpt
       variableValues
         .filter(value => value.includes('--')) // Skip validation if the css variable had a non-var fallback
         .filter(variable => !RegExp(`${variable}:`).test(decl.source.input.css)) // Is it defined locally?
+        .filter(variable => !globals.find(filePath => RegExp(`${variable}:`).test(fs.readFileSync(filePath)))) // Is it defined in a global file?
         .filter(variable => !imports.find(filePath => RegExp(`${variable}:`).test(fs.readFileSync(filePath)))) // Is it defined in an imported file?
         .forEach(variable => stylelint.utils.report({
           index: decl.lastEach,

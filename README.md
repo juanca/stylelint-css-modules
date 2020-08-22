@@ -38,6 +38,7 @@ rules: {
   {
     resolve: {
       extensions: ['.css'],
+      modules: ['node_modules'],
     },
   }
   ```
@@ -57,6 +58,26 @@ rules: {
     'css-modules/css-variables': [true, {
       resolve: {
         extensions: ['.css', '.scss'],
+      },
+    }],
+  },
+  ```
+</details>
+
+<details>
+  <summary>Configuring globally available variables</summary>
+
+  ```js
+  plugins: [
+    'stylelint-css-modules',
+  ],
+  rules: {
+    'css-modules/composed-class-names': true,
+    'css-modules/css-variables': [true, {
+      resolve: {
+        globals: [
+          path.join(__dirname, 'app/src/globals.css'),
+        ],
       },
     }],
   },
