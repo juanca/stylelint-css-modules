@@ -1,6 +1,6 @@
 {
   "name": "stylelint-css-modules",
-  "version": "1.2.0",
+  "version": "1.2.0-stylelint14",
   "description": "Extended ruleset for stylelint on CSS modules",
   "keywords": [
     "stylelint",
@@ -14,7 +14,8 @@
     "test10": "npm install stylelint@10 --no-save && npm test",
     "test11": "npm install stylelint@11 --no-save && npm test",
     "test12": "npm install stylelint@12 --no-save && npm test",
-    "test13": "npm install stylelint@13 --no-save && npm test"
+    "test13": "npm install stylelint@13 --no-save && npm test",
+    "test14": "npm install stylelint@14 --no-save && npm test"
   },
   "author": "Juan Carlos Medina",
   "license": "MIT",
@@ -29,6 +30,6 @@
     "jest": "^26.1.0"
   },
   "peerDependencies": {
-    "stylelint": "^9 || ^10 || ^11 || ^12 || ^13"
+    "stylelint": ">= ^9"
   }
 }
