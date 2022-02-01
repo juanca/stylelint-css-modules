@@ -1,6 +1,6 @@
 {
   "name": "stylelint-css-modules",
-  "version": "1.2.0-stylelint14",
+  "version": "1.2.0-stylelint14-2",
   "description": "Extended ruleset for stylelint on CSS modules",
   "keywords": [
     "stylelint",
@@ -30,6 +30,6 @@
     "jest": "^26.1.0"
   },
   "peerDependencies": {
-    "stylelint": ">= ^9"
+    "stylelint": ">= 9"
   }
 }
