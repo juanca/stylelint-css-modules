@@ -6,6 +6,8 @@
 
 .class-with-attr[some-attr] {}
 
+.from-class {}
+
 .lots-of-compositions {
   composes: solo-class;
   composes: nested-root;
@@ -20,4 +22,9 @@
   composes: baz from './baz.css';
   composes: bazzy from './baz.css';
   composes: sassy from '~sass.css';
+  composes: from-class;
+  composes: from-class from './fromfile.css';
+  composes: baz from './from file.css';
+  composes: baz from baz2 from './my file from css.css';
+  composes: baz from baz2 from "./my file from css.css";
 }

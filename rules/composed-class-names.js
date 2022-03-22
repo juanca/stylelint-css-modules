@@ -32,7 +32,8 @@ module.exports = stylelint.createPlugin('css-modules/composed-class-names', (pri
 
     root.walkDecls((decl) => {
       if (decl.prop === 'composes') {
-        const expressions = decl.value.split('from');
+        const match = decl.value.match(/^(.+?)\s+from\s+((?:[^\s]+)|(?:["'].+["']))$/);
+        const expressions = match ? [match[1], match[2]] : [decl.value];
         const classNames = expressions[0].replace(/\s+/g, ' ').trim().split(' ');
         const fromExpression = expressions[1] ? expressions[1].trim() : `'${result.opts.from}'`;
         if (fromExpression === 'global') return;
