@@ -1,4 +1,5 @@
 const stylelint = require('stylelint');
+const path = require('path');
 
 function configuration(options) {
   return Object.assign({
@@ -20,6 +21,25 @@ function configuration(options) {
 test('css-variables rule parses correct usages of CSS variables', () => {
   return stylelint.lint(configuration({
     files: require.resolve('../fixtures/css-variables/passes.css'),
+  })).then(function (resultObject) {
+    const output = JSON.parse(resultObject.output);
+    expect(output[0].warnings).toEqual([]);
+  });
+});
+
+test('css-variables rule parses correct usages of globally available CSS variables', () => {
+  return stylelint.lint(configuration({
+    config: {
+      plugins: ['./css-variables.js'],
+      rules: {
+        'css-modules/css-variables': [true, {
+          globals: [
+            path.join(__dirname, '../fixtures/css-variables/src/global-vars.css'),
+          ],
+        }],
+      },
+    },
+    files: require.resolve('../fixtures/css-variables/globally-passes.css'),
   })).then(function (resultObject) {
     const output = JSON.parse(resultObject.output);
     expect(output[0].warnings).toEqual([]);
